@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-firebasex" version="16.2.0-cli"
-		xmlns="http://apache.org/cordova/ns/plugins/1.0"
-		xmlns:android="http://schemas.android.com/apk/res/android">
+<plugin id="cordova-plugin-firebasex" version="16.3.0-cli"
+	xmlns="http://apache.org/cordova/ns/plugins/1.0"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+>
 	<name>Google Firebase Plugin</name>
 
 	<license>MIT</license>
@@ -16,6 +18,7 @@
 	<preference name="FIREBASE_PERFORMANCE_COLLECTION_ENABLED" default="true" />
 	<preference name="FIREBASE_CRASHLYTICS_COLLECTION_ENABLED" default="true" />
 	<preference name="FIREBASE_FCM_AUTOINIT_ENABLED" default="true" />
+	<preference name="FIREBASE_ANALYTICS_WITHOUT_ADS" default="false" />
 
 	<platform name="android">
 		<preference name="ANDROID_ICON_ACCENT" default="#FF00FFFF" />
@@ -34,6 +37,7 @@
 			<uses-permission android:name="android.permission.INTERNET" />
 			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 			<uses-permission android:name="android.permission.WAKE_LOCK" />
+			<!--<uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove"/>-->
 		</config-file>
 		<config-file target="AndroidManifest.xml" parent="application">
 			<service android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementService" />
@@ -50,6 +54,7 @@
 			<meta-data android:name="firebase_performance_collection_enabled" android:value="$FIREBASE_PERFORMANCE_COLLECTION_ENABLED" />
 			<meta-data android:name="firebase_crashlytics_collection_enabled" android:value="$FIREBASE_CRASHLYTICS_COLLECTION_ENABLED" />
 			<meta-data android:name="firebase_messaging_auto_init_enabled" android:value="$FIREBASE_FCM_AUTOINIT_ENABLED" />
+			<meta-data android:name="google_analytics_adid_collection_enabled" android:value="true" />
 		</config-file>
 		<resource-file src="src/android/cordova-plugin-firebase-strings.xml" target="res/values/cordova-plugin-firebase-strings.xml" />
 		<source-file src="src/android/FirebasePlugin.java" target-dir="src/org/apache/cordova/firebase" />
@@ -87,7 +92,7 @@
 		<framework src="com.google.firebase:firebase-auth:$ANDROID_FIREBASE_AUTH_VERSION" />
 		<framework src="com.google.firebase:firebase-firestore:$ANDROID_FIREBASE_FIRESTORE_VERSION" />
 		<framework src="com.google.firebase:firebase-functions:$ANDROID_FIREBASE_FUNCTIONS_VERSION" />
-			<framework src="com.google.firebase:firebase-iid:$ANDROID_FIREBASE_IID_VERSION" />
+		<framework src="com.google.firebase:firebase-iid:$ANDROID_FIREBASE_IID_VERSION" />
 		<framework src="com.google.firebase:firebase-installations:$ANDROID_FIREBASE_INSTALLATIONS_VERSION" />
 		<framework src="com.google.firebase:firebase-crashlytics:$ANDROID_FIREBASE_CRASHLYTICS_VERSION" />
 		<framework src="com.google.firebase:firebase-crashlytics-ndk:$ANDROID_FIREBASE_CRASHLYTICS_NDK_VERSION" />
@@ -148,6 +153,8 @@
 			<pods use-frameworks="true">
 				<pod name="FirebaseCore" spec="10.17.0"/>
 				<pod name="FirebaseAuth" spec="10.17.0"/>
+				<pod name="FirebaseAnalytics" spec="10.17.0"/>
+				<!--<pod name="FirebaseAnalyticsOnDeviceConversion" spec="10.17.0"/>-->
 				<pod name="FirebaseMessaging" spec="10.17.0"/>
 				<pod name="FirebasePerformance" spec="10.17.0"/>
 				<pod name="FirebaseRemoteConfig" spec="10.17.0"/>
